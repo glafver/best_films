@@ -1,10 +1,13 @@
 import React from 'react'
-import { Container, ListGroupItem, ListGroup } from 'react-bootstrap'
+import { Container, Button, ListGroupItem, ListGroup } from 'react-bootstrap'
 import { getMoviesListByType } from '../services/TheMovieAPI'
 import { useQuery } from 'react-query'
-import { useParams } from 'react-router-dom'
+import { useParams, useNavigate, Link } from 'react-router-dom'
+import MoviesList from './partials/MoviesList'
 
 const MoviesListPage = () => {
+
+    const navigate = useNavigate()
 
     const { type } = useParams()
 
@@ -13,9 +16,7 @@ const MoviesListPage = () => {
     return (
         <Container>
 
-            <div>
-                <p>Welcome to Movies List</p>
-            </div>
+            <Button variant="secondary" onClick={() => navigate(-1)} className="mb-3"> ⟪ Back</Button>
 
             {isLoading && <p>Loading...</p>}
 
@@ -23,14 +24,9 @@ const MoviesListPage = () => {
 
             {isSuccess && (
                 <>
-                    <ListGroup>
-                        {data.results.map((film, i) => (
-                            <ListGroupItem key={i}>
-                                <p>{film.title}</p>
-                            </ListGroupItem>
-                        ))}
-                    </ListGroup>
+                    <p>Here are {type} films:</p>
 
+                    <MoviesList movies={data.results} />
                 </>
             )}
 

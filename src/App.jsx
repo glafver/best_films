@@ -1,9 +1,11 @@
 import Navigation from './pages/partials/Navigation'
 import HomePage from './pages/HomePage'
-import MoviesListPage from './pages/MoviesListPage'
-import GenresMoviesPage from './pages/GenresMoviesPage'
-import GenresPage from './pages/GenresPage'
 import PageNotFound from './pages/PageNotFound'
+import GenresPage from './pages/GenresPage'
+import TypeMoviesPage from './pages/TypeMoviesPage'
+import GenreMoviesPage from './pages/GenreMoviesPage'
+import MovieActorsPage from './pages/MovieActorsPage'
+import ActorMoviesPage from './pages/ActorMoviesPage'
 import { ReactQueryDevtools } from 'react-query/devtools'
 import { Routes, Route } from 'react-router-dom'
 import './assets/scss/App.scss'
@@ -17,11 +19,15 @@ function App() {
       <Routes>
         <Route path="/" element={<HomePage />} />
 
-        <Route path="/movies/:type" element={<MoviesListPage />} />
+        <Route path="/movies/:type" element={<TypeMoviesPage />} />
+
+        <Route path="/movie/:id/actors" element={<MovieActorsPage />} />
+
+        <Route path="/actor/:id/movies" element={<ActorMoviesPage />} />
 
         <Route path="/genres" element={<GenresPage />} />
 
-        <Route path="/genres/movies/:genre_id" element={<GenresMoviesPage />} />
+        <Route path="/genres/:id/movies" element={<GenreMoviesPage />} />
 
         <Route path="*" element={<PageNotFound />} />
 
