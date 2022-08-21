@@ -36,7 +36,7 @@ function App() {
 
         <Route path="/genres" element={<GenresPage />} />
 
-        <Route path="/genres/:id/movies" element={<GenreMoviesPage />} />
+        <Route path="/genres/:genre/movies" element={<GenreMoviesPage />} />
 
         <Route path="*" element={<PageNotFound />} />
 

@@ -23,7 +23,7 @@ const GenresPage = () => {
                 <>
                     <ListGroup>
                         {data.genres.map((genre, i) => (
-                            <ListGroupItem as={Link} key={i} to={`${genre.id}/movies`}  >
+                            <ListGroupItem as={Link} key={i} to={`${genre.id}_${genre.name}/movies`}  >
                                 <p>{genre.name}</p>
                             </ListGroupItem>
                         ))}

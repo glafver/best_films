@@ -27,9 +27,9 @@ export const getGenres = async () => {
 
 export const getMoviesByGenre = async ({ queryKey }) => {
 
-    const [_key, genre_id] = queryKey
+    const [_key, id, page] = queryKey
 
-    const response = await axios.get(`/discover/movie?api_key=${import.meta.env.VITE_THE_MOVIE_API_KEY}&sort_by=popularity.desc&include_adult=false&page=1&with_genres=${genre_id}`)
+    const response = await axios.get(`/discover/movie?api_key=${import.meta.env.VITE_THE_MOVIE_API_KEY}&sort_by=popularity.desc&include_adult=false&page=${page}&with_genres=${id}`)
 
     return response.data
 }
