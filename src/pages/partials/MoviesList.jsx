@@ -1,4 +1,4 @@
-import { Card, Row, Col } from 'react-bootstrap'
+import { Card, Row, Col, Button } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
 
 const MoviesList = ({ movies }) => {
@@ -14,9 +14,7 @@ const MoviesList = ({ movies }) => {
                             <Card.Body>
                                 <Card.Title>{movie.title}</Card.Title>
                                 <Card.Text>
-                                    <Link className='h5' to={`/movie/${movie.id}/actors`}>Actors</Link>
-                                    <br />
-                                    <Link className='h5' to={`/movie/${movie.id}similar`}>Similar films</Link>
+                                    <Button variant="secondary" as={Link} to={`/movie/${movie.id}`}>More about movie...</Button>
                                 </Card.Text>
                             </Card.Body>
                         </Card>

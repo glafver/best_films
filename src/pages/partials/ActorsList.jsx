@@ -1,4 +1,4 @@
-import { Card, Row, Col } from 'react-bootstrap'
+import { Card, Row, Col, Button } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
 
 const ActorsList = ({ cast }) => {
@@ -8,8 +8,6 @@ const ActorsList = ({ cast }) => {
 			return true
 		}
 	})
-
-	// console.log(actors, cast)
 
 	return (
 
@@ -21,7 +19,7 @@ const ActorsList = ({ cast }) => {
 						<Card.Body>
 							<Card.Title>{actor.name}</Card.Title>
 							<Card.Text>
-								<Link className='h5' to={`/actor/${actor.id}/movies`}>Films with actor</Link>
+								<Button variant="secondary" as={Link} to={`/actor/${actor.id}`}>More about actor...</Button>
 							</Card.Text>
 						</Card.Body>
 					</Card>

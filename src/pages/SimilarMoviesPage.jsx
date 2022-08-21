@@ -1,17 +1,17 @@
 import React from 'react'
 import { Container, Button } from 'react-bootstrap'
-import { getMoviesByType } from '../services/TheMovieAPI'
+import { getMovie } from '../services/TheMovieAPI'
 import { useQuery } from 'react-query'
 import { useParams, useNavigate } from 'react-router-dom'
 import MoviesList from './partials/MoviesList'
 
-const TypeMoviesPage = () => {
+const SimilarMoviesPage = () => {
 
     const navigate = useNavigate()
 
-    const { type } = useParams()
+    const { id } = useParams()
 
-    const { data, error, isError, isLoading, isSuccess } = useQuery(['movies', type], getMoviesByType)
+    const { data, error, isError, isLoading, isSuccess } = useQuery(['movie', id], getMovie)
 
     return (
         <Container>
@@ -24,9 +24,9 @@ const TypeMoviesPage = () => {
 
             {isSuccess && (
                 <>
-                    <p>Here are {type} films:</p>
+                    <p>Similar films to <b>{data.title}</b>:</p>
 
-                    <MoviesList movies={data.results} />
+                    <MoviesList movies={data.similar.results} />
                 </>
             )}
 
@@ -34,4 +34,4 @@ const TypeMoviesPage = () => {
     )
 }
 
-export default TypeMoviesPage
+export default SimilarMoviesPage

@@ -43,16 +43,16 @@ export const getMovie = async ({ queryKey }) => {
     return response.data
 }
 
-export const getMoviesByActor = async ({ queryKey }) => {
+export const getActor = async ({ queryKey }) => {
 
     const [_key, id] = queryKey
 
-    const response = await axios.get(`discover/movie?api_key=${import.meta.env.VITE_THE_MOVIE_API_KEY}&sort_by=popularity.desc&include_adult=false&page=1&with_people=${id}`)
+    const response = await axios.get(`/person/${id}?api_key=${import.meta.env.VITE_THE_MOVIE_API_KEY}&append_to_response=credits`)
 
     return response.data
 }
 
-export const getTrendingFilmsWeek = async () => {
+export const getPopularMoviesTimeline = async () => {
 
     const response = await axios.get(`/trending/movie/week?api_key=${import.meta.env.VITE_THE_MOVIE_API_KEY}`)
 
@@ -60,10 +60,10 @@ export const getTrendingFilmsWeek = async () => {
 }
 
 export default {
-    getTrendingFilmsWeek,
     getMoviesByType,
     getGenres,
     getMoviesByGenre,
     getMovie,
-    getMoviesByActor
+    getActor,
+    getPopularMoviesTimeline,
 }
