@@ -1,17 +1,17 @@
 import React from 'react'
 import { Container, Button } from 'react-bootstrap'
-import { getByGenre } from '../services/TheMovieAPI'
+import { getMoviesByGenre } from '../services/TheMovieAPI'
 import { useQuery } from 'react-query'
 import { useParams, useNavigate } from 'react-router-dom'
 import MoviesList from './partials/MoviesList'
 
-const GenresMoviesPage = () => {
+const GenreMoviesPage = () => {
 
     const navigate = useNavigate()
 
     const { genre_id } = useParams()
 
-    const { data, error, isError, isLoading, isSuccess } = useQuery(['movies_by_genre', genre_id], getByGenre)
+    const { data, error, isError, isLoading, isSuccess } = useQuery(['movies_by_genre', genre_id], getMoviesByGenre)
 
     return (
         <Container>
@@ -35,4 +35,4 @@ const GenresMoviesPage = () => {
     )
 }
 
-export default GenresMoviesPage
+export default GenreMoviesPage

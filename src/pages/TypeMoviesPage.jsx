@@ -1,6 +1,6 @@
 import React from 'react'
-import { Container, Button, ListGroupItem, ListGroup } from 'react-bootstrap'
-import { getMoviesListByType } from '../services/TheMovieAPI'
+import { Container, Button } from 'react-bootstrap'
+import { getMoviesByType } from '../services/TheMovieAPI'
 import { useQuery } from 'react-query'
 import { useParams, useNavigate, Link } from 'react-router-dom'
 import MoviesList from './partials/MoviesList'
@@ -11,7 +11,7 @@ const MoviesListPage = () => {
 
     const { type } = useParams()
 
-    const { data, error, isError, isLoading, isSuccess } = useQuery(['movies', type], getMoviesListByType)
+    const { data, error, isError, isLoading, isSuccess } = useQuery(['movies', type], getMoviesByType)
 
     return (
         <Container>

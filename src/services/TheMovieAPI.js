@@ -9,7 +9,7 @@ axios.defaults.baseURL = "https://api.themoviedb.org/3"
 //     }
 // }
 
-export const getMoviesListByType = async ({ queryKey }) => {
+export const getMoviesByType = async ({ queryKey }) => {
 
     const [_key, type] = queryKey
 
@@ -25,6 +25,15 @@ export const getGenres = async () => {
     return response.data
 }
 
+export const getMoviesByGenre = async ({ queryKey }) => {
+
+    const [_key, genre_id] = queryKey
+
+    const response = await axios.get(`/discover/movie?api_key=${import.meta.env.VITE_THE_MOVIE_API_KEY}&sort_by=popularity.desc&include_adult=false&page=1&with_genres=${genre_id}`)
+
+    return response.data
+}
+
 export const getMovie = async ({ queryKey }) => {
 
     const [_key, id] = queryKey
@@ -34,20 +43,11 @@ export const getMovie = async ({ queryKey }) => {
     return response.data
 }
 
-export const getActorMovies = async ({ queryKey }) => {
+export const getMoviesByActor = async ({ queryKey }) => {
 
     const [_key, id] = queryKey
 
     const response = await axios.get(`discover/movie?api_key=${import.meta.env.VITE_THE_MOVIE_API_KEY}&sort_by=popularity.desc&include_adult=false&page=1&with_people=${id}`)
-
-    return response.data
-}
-
-export const getByGenre = async ({ queryKey }) => {
-
-    const [_key, genre_id] = queryKey
-
-    const response = await axios.get(`/discover/movie?api_key=${import.meta.env.VITE_THE_MOVIE_API_KEY}&sort_by=popularity.desc&include_adult=false&page=1&with_genres=${genre_id}`)
 
     return response.data
 }
@@ -61,9 +61,9 @@ export const getTrendingFilmsWeek = async () => {
 
 export default {
     getTrendingFilmsWeek,
-    getMoviesListByType,
+    getMoviesByType,
     getGenres,
-    getByGenre,
+    getMoviesByGenre,
     getMovie,
-    getActorMovies
+    getMoviesByActor
 }

@@ -1,6 +1,6 @@
 import React from 'react'
 import { useParams, useNavigate } from 'react-router-dom'
-import { getActorMovies } from '../services/TheMovieAPI'
+import { getMoviesByActor } from '../services/TheMovieAPI'
 import { useQuery } from 'react-query'
 import { Container, Button } from 'react-bootstrap'
 import MoviesList from './partials/MoviesList'
@@ -10,7 +10,7 @@ const ActorPage = () => {
     const navigate = useNavigate()
 
     const { id } = useParams()
-    const { data, error, isError, isLoading, isSuccess } = useQuery(['actor_movies', id], getActorMovies)
+    const { data, error, isError, isLoading, isSuccess } = useQuery(['actor_movies', id], getMoviesByActor)
 
     return (
         <Container>
