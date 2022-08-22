@@ -1,5 +1,5 @@
 import React from 'react'
-import { Container, Button } from 'react-bootstrap'
+import { Container } from 'react-bootstrap'
 import { getMoviesByGenre } from '../services/TheMovieAPI'
 import { useQuery } from 'react-query'
 import { useParams, useSearchParams } from 'react-router-dom'
@@ -16,7 +16,6 @@ const GenreMoviesPage = () => {
     const genre_name = genre.split("_")[1]
 
     const { data, error, isError, isLoading, isSuccess } = useQuery(['movies_by_genre', id, page], getMoviesByGenre)
-    console.log(data)
 
     return (
         <Container>
@@ -27,26 +26,11 @@ const GenreMoviesPage = () => {
 
             {isSuccess && (
                 <>
-                    <p>{id}</p>
-                    <p>We found {data.total_results} films in <b>{genre_name} </b>genre:</p>
+                    <p>We found <b>{data.total_results}</b> films in <b>{genre_name} </b>genre:</p>
 
-                    <MoviesList movies={data.results} />
+                    <MoviesList movies={data.results} page={page} total_pages={parseInt(data.total_pages)}
+                        on_prev={() => setSearchParams({ page: page - 1 })} on_next={() => setSearchParams({ page: page + 1 })} />
 
-                    <div className="d-flex justify-content-between align-items-center mt-4">
-                        <Button
-                            disabled={page === 1 ? true : false}
-                            onClick={() => setSearchParams({ page: page - 1 })}
-                            variant="primary"
-                        >Previous Page</Button>
-
-                        <span>Page: {page}/{data.total_pages}</span>
-
-                        <Button
-                            disabled={page === parseInt(data.total_results) ? true : false}
-                            onClick={() => setSearchParams({ page: page + 1 })}
-                            variant="primary"
-                        >Next Page</Button>
-                    </div>
                 </>
             )}
 

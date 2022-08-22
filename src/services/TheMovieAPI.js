@@ -11,9 +11,9 @@ axios.defaults.baseURL = "https://api.themoviedb.org/3"
 
 export const getMoviesByType = async ({ queryKey }) => {
 
-    const [_key, type] = queryKey
+    const [_key, type, page] = queryKey
 
-    const response = await axios.get(`/movie/${type}?api_key=${import.meta.env.VITE_THE_MOVIE_API_KEY}&region=se`)
+    const response = await axios.get(`/movie/${type}?api_key=${import.meta.env.VITE_THE_MOVIE_API_KEY}&region=se&include_adult=false&page=${page}`)
 
     return response.data
 }
@@ -36,9 +36,9 @@ export const getMoviesByGenre = async ({ queryKey }) => {
 
 export const getMovie = async ({ queryKey }) => {
 
-    const [_key, id] = queryKey
+    const [_key, id, page] = queryKey
 
-    const response = await axios.get(`/movie/${id}?api_key=${import.meta.env.VITE_THE_MOVIE_API_KEY}&append_to_response=similar,credits`)
+    const response = await axios.get(`/movie/${id}?api_key=${import.meta.env.VITE_THE_MOVIE_API_KEY}&append_to_response=credits,similar&page=${page}`)
 
     return response.data
 }
@@ -48,6 +48,15 @@ export const getActor = async ({ queryKey }) => {
     const [_key, id] = queryKey
 
     const response = await axios.get(`/person/${id}?api_key=${import.meta.env.VITE_THE_MOVIE_API_KEY}&append_to_response=credits`)
+
+    return response.data
+}
+
+export const getActorMovies = async ({ queryKey }) => {
+
+    const [_key, id, page] = queryKey
+
+    const response = await axios.get(`/discover/movie?api_key=${import.meta.env.VITE_THE_MOVIE_API_KEY}&sort_by=popularity.desc&include_adult=false&page=${page}&with_people=${id}`)
 
     return response.data
 }
@@ -65,5 +74,6 @@ export default {
     getMoviesByGenre,
     getMovie,
     getActor,
+    getActorMovies,
     getPopularMoviesTimeline,
 }

@@ -8,8 +8,10 @@ import MovieSimilar from './partials/MovieSimilar'
 
 const MoviePage = () => {
 
+    const page = 1
+
     const { id } = useParams()
-    const { data: movie, error, isError, isLoading, isSuccess } = useQuery(['movie', id], getMovie)
+    const { data: movie, error, isError, isLoading, isSuccess } = useQuery(['movie', id, page], getMovie)
 
     return (
         <Container>

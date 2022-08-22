@@ -1,7 +1,7 @@
 import { Card, Row, Col, Button } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
 
-const MoviesList = ({ movies }) => {
+const MoviesList = ({ movies, page, total_pages, on_prev, on_next }) => {
 
     return (
 
@@ -21,6 +21,14 @@ const MoviesList = ({ movies }) => {
                     </Col>
                 ))}
             </Row>
+
+            <div className="d-flex justify-content-between align-items-center mt-4">
+                <Button disabled={page === 1 ? true : false} onClick={on_prev} variant="primary">Previous Page</Button>
+
+                <span>Page: {page}/{total_pages}</span>
+
+                <Button disabled={page === total_pages ? true : false} onClick={on_next} variant="primary">Next Page</Button>
+            </div>
         </>
 
     )
