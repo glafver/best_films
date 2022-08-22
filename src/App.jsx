@@ -7,6 +7,7 @@ import GenreMoviesPage from './pages/GenreMoviesPage'
 import MovieActorsPage from './pages/MovieActorsPage'
 import ActorMoviesPage from './pages/ActorMoviesPage'
 import SimilarMoviesPage from './pages/SimilarMoviesPage'
+import TrendingMoviesPage from './pages/TrendingMoviesPage'
 import ActorPage from './pages/ActorPage'
 import MoviePage from './pages/MoviePage'
 import { ReactQueryDevtools } from 'react-query/devtools'
@@ -23,6 +24,10 @@ function App() {
         <Route path="/" element={<HomePage />} />
 
         <Route path="/movies/:type" element={<TypeMoviesPage />} />
+
+        <Route path="/movies/popular/day" element={<TrendingMoviesPage />} />
+
+        <Route path="/movies/popular/week" element={<TrendingMoviesPage />} />
 
         <Route path="/movie/:id" element={<MoviePage />} />
 

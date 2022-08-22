@@ -61,9 +61,11 @@ export const getActorMovies = async ({ queryKey }) => {
     return response.data
 }
 
-export const getPopularMoviesTimeline = async () => {
+export const getPopularMoviesTimeline = async ({ queryKey }) => {
 
-    const response = await axios.get(`/trending/movie/week?api_key=${import.meta.env.VITE_THE_MOVIE_API_KEY}`)
+    const [_key, timeline, page] = queryKey
+
+    const response = await axios.get(`/trending/movie/${timeline}?api_key=${import.meta.env.VITE_THE_MOVIE_API_KEY}&page=${page}`)
 
     return response.data
 }
