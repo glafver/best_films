@@ -4,3 +4,15 @@ a {
     color: black;
     text-decoration: none;
 }
+
+.films_page_container {
+    position: relative;
+    min-height: 100vh;
+    padding-bottom: 25rem;
+}
+
+.films_footer {
+    position: absolute;
+    bottom: 0;
+    padding-bottom: 2rem;
+}

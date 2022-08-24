@@ -28,8 +28,6 @@ const ActorsList = ({ cast }) => {
 			))}
 		</Row>
 
-
-
 	)
 }
 

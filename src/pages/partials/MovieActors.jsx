@@ -16,8 +16,7 @@ const MovieActors = ({ cast }) => {
 
             {actors.map(actor => (
                 <Link key={actor.id} to={`/actor/${actor.id}`}>{actor.name}, </Link>
-            ))
-            }
+            ))}
 
             <Link className='text-secondary' to={`/movie/${id}/actors`}>more actors...</Link>
 

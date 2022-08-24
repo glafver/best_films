@@ -4,6 +4,7 @@ import { getMovie } from '../services/TheMovieAPI'
 import { useQuery } from 'react-query'
 import { useParams } from 'react-router-dom'
 import ActorsList from './partials/ActorsList'
+import LastFilms from './partials/LastFilms'
 
 const ActorsPage = () => {
 
@@ -14,7 +15,7 @@ const ActorsPage = () => {
     const { data, error, isError, isLoading, isSuccess } = useQuery(['movie', id, page], getMovie)
 
     return (
-        <Container>
+        <Container className='films_page_container'>
 
             {isLoading && <p>Loading...</p>}
 
@@ -30,6 +31,9 @@ const ActorsPage = () => {
                     <ActorsList cast={data.credits.cast} />
                 </>
             )}
+
+            <LastFilms />
+
         </Container>
     )
 }

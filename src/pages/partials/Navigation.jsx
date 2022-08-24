@@ -22,8 +22,9 @@ const Navigation = () => {
 
 						<NavDropdown title="Popular films" id="basic-nav-dropdown">
 							<NavDropdown.Item as={NavLink} to="movies/popular">All popular films</NavDropdown.Item>
-							<NavDropdown.Item as={NavLink} to="movies/popular/day">Popular films of the day</NavDropdown.Item>
-							<NavDropdown.Item as={NavLink} to="movies/popular/week">Popular films of the week</NavDropdown.Item>
+							<NavDropdown.Divider />
+							<NavDropdown.Item as={NavLink} to="movies/trending/day">Popular films of the day</NavDropdown.Item>
+							<NavDropdown.Item as={NavLink} to="movies/trending/week">Popular films of the week</NavDropdown.Item>
 						</NavDropdown>
 
 						<Nav.Link as={NavLink} to="movies/top_rated">Top rated films 🏆</Nav.Link>

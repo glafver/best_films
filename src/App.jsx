@@ -25,9 +25,9 @@ function App() {
 
         <Route path="/movies/:type" element={<TypeMoviesPage />} />
 
-        <Route path="/movies/popular/day" element={<TrendingMoviesPage />} />
+        <Route path="/movies/trending/day" element={<TrendingMoviesPage />} />
 
-        <Route path="/movies/popular/week" element={<TrendingMoviesPage />} />
+        <Route path="/movies/trending/week" element={<TrendingMoviesPage />} />
 
         <Route path="/movie/:id" element={<MoviePage />} />
 

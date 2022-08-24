@@ -1,9 +1,10 @@
 import React from 'react'
-import { Container, Button } from 'react-bootstrap'
+import { Container } from 'react-bootstrap'
 import { getMoviesByType } from '../services/TheMovieAPI'
 import { useQuery } from 'react-query'
 import { useParams, useSearchParams } from 'react-router-dom'
 import MoviesList from './partials/MoviesList'
+import LastFilms from './partials/LastFilms'
 
 const TypeMoviesPage = () => {
 
@@ -15,7 +16,7 @@ const TypeMoviesPage = () => {
     const { data, error, isError, isLoading, isSuccess } = useQuery(['movies', type, page], getMoviesByType)
 
     return (
-        <Container>
+        <Container className='films_page_container'>
 
             {isLoading && <p>Loading...</p>}
 
@@ -29,6 +30,8 @@ const TypeMoviesPage = () => {
                         on_prev={() => setSearchParams({ page: page - 1 })} on_next={() => setSearchParams({ page: page + 1 })} />
                 </>
             )}
+
+            <LastFilms />
 
         </Container>
     )

@@ -2,8 +2,9 @@ import React from 'react'
 import { Container } from 'react-bootstrap'
 import { getMoviesByGenre } from '../services/TheMovieAPI'
 import { useQuery } from 'react-query'
-import { useParams, useSearchParams, useLocation } from 'react-router-dom'
+import { useParams, useSearchParams } from 'react-router-dom'
 import MoviesList from './partials/MoviesList'
+import LastFilms from './partials/LastFilms'
 
 const GenreMoviesPage = () => {
 
@@ -18,7 +19,7 @@ const GenreMoviesPage = () => {
     const { data, error, isError, isLoading, isSuccess } = useQuery(['movies_by_genre', id, page], getMoviesByGenre)
 
     return (
-        <Container>
+        <Container className='films_page_container'>
 
             {isLoading && <p>Loading...</p>}
 
@@ -33,6 +34,8 @@ const GenreMoviesPage = () => {
 
                 </>
             )}
+
+            <LastFilms />
 
         </Container>
     )

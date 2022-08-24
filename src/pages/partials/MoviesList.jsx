@@ -29,6 +29,7 @@ const MoviesList = ({ movies, page, total_pages, on_prev, on_next }) => {
 
                 <Button disabled={page === total_pages ? true : false} onClick={on_next} variant="primary">Next Page</Button>
             </div>
+
         </>
 
     )

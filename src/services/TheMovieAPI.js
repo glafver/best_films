@@ -38,6 +38,8 @@ export const getMovie = async ({ queryKey }) => {
 
     const [_key, id, page] = queryKey
 
+    console.log(id)
+
     const response = await axios.get(`/movie/${id}?api_key=${import.meta.env.VITE_THE_MOVIE_API_KEY}&append_to_response=credits,similar&page=${page}`)
 
     return response.data
@@ -70,6 +72,16 @@ export const getPopularMoviesTimeline = async ({ queryKey }) => {
     return response.data
 }
 
+export const getSearchMovies = async ({ queryKey }) => {
+
+    const [_key, query, page] = queryKey
+
+    const response = await axios.get(`/search/movie?api_key=${import.meta.env.VITE_THE_MOVIE_API_KEY}&query=${query}&page=${page}&include_adult=false`)
+
+    return response.data
+}
+
+
 export default {
     getMoviesByType,
     getGenres,
@@ -78,4 +90,5 @@ export default {
     getActor,
     getActorMovies,
     getPopularMoviesTimeline,
+    getSearchMovies
 }
