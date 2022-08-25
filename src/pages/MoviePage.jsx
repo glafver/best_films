@@ -18,8 +18,8 @@ const MoviePage = () => {
         if (data) {
             let movies = localStorage.getItem('movies') ? JSON.parse(localStorage.getItem('movies')) : []
             movies = movies.filter(function (item) { return item.id !== id })
-            movies.push({ id: id, title: data.title, src: data.poster_path != null ? 'https://image.tmdb.org/t/p/w500/' + data.poster_path : 'https://artbunny.ru/wp-content/uploads/2014/11/placeholder.jpg' })
-            movies = movies.slice(-10).reverse()
+            movies.unshift({ id: id, title: data.title, src: data.poster_path != null ? 'https://image.tmdb.org/t/p/w500/' + data.poster_path : 'https://artbunny.ru/wp-content/uploads/2014/11/placeholder.jpg' })
+            movies = movies.slice(-10)
             localStorage.setItem('movies', JSON.stringify(movies))
         }
     }, [data])
@@ -34,7 +34,7 @@ const MoviePage = () => {
             {isSuccess && (
                 <>
                     <Row>
-                        <Col className="text-center" md={6} sm={12}>
+                        <Col md={6} sm={12}>
                             <Image className='mx-auto fluid' src={data.poster_path != null ? 'https://image.tmdb.org/t/p/w500/' + data.poster_path : 'https://artbunny.ru/wp-content/uploads/2014/11/placeholder.jpg'} />
                         </Col>
                         <Col md={6} sm={12}>

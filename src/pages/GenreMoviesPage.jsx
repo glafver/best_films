@@ -16,7 +16,9 @@ const GenreMoviesPage = () => {
     const id = parseInt(genre.split("_")[0])
     const genre_name = genre.split("_")[1]
 
-    const { data, error, isError, isLoading, isSuccess } = useQuery(['movies_by_genre', id, page], getMoviesByGenre)
+    const { data, error, isError, isLoading, isSuccess } = useQuery(['movies_by_genre', id, page], getMoviesByGenre, {
+        keepPreviousData: true,
+    })
 
     return (
         <Container className='films_page_container'>

@@ -14,7 +14,9 @@ const TrendingMoviesPage = () => {
     const [searchParams, setSearchParams] = useSearchParams({ page: 1 })
     const page = searchParams.get('page') ? parseInt(searchParams.get('page')) : null
 
-    const { data, error, isError, isLoading, isSuccess } = useQuery(['movies_by_timeline', timeline, page], getPopularMoviesTimeline)
+    const { data, error, isError, isLoading, isSuccess } = useQuery(['movies_by_timeline', timeline, page], getPopularMoviesTimeline, {
+        keepPreviousData: true,
+    })
 
     return (
         <Container className='films_page_container'>

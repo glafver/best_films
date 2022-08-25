@@ -11,7 +11,7 @@ const LastFilms = () => {
             <Container className='films_footer text-center'>
 
                 <p><b>Movies you've recently viewed:</b></p>
-                <Row className='justify-content-between'>
+                <Row className='justify-content-center'>
                     {movies.length && movies.map((movie, i) => (
                         <Col className='text-center' xs={1} key={i} >
                             <Link to={`/movie/${movie.id}`}>

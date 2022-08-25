@@ -13,7 +13,9 @@ const TypeMoviesPage = () => {
 
     const { type } = useParams()
 
-    const { data, error, isError, isLoading, isSuccess } = useQuery(['movies', type, page], getMoviesByType)
+    const { data, error, isError, isLoading, isSuccess } = useQuery(['movies', type, page], getMoviesByType, {
+        keepPreviousData: true,
+    })
 
     return (
         <Container className='films_page_container'>

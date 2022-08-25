@@ -12,7 +12,9 @@ const ActorPage = () => {
     const page = searchParams.get('page') ? parseInt(searchParams.get('page')) : null
 
     const { id } = useParams()
-    const { data, error, isError, isLoading, isSuccess } = useQuery(['actor_movies', id, page], getActorMovies)
+    const { data, error, isError, isLoading, isSuccess } = useQuery(['actor_movies', id, page], getActorMovies, {
+        keepPreviousData: true,
+    })
 
     return (
         <Container className='films_page_container'>

@@ -38,8 +38,6 @@ export const getMovie = async ({ queryKey }) => {
 
     const [_key, id, page] = queryKey
 
-    console.log(id)
-
     const response = await axios.get(`/movie/${id}?api_key=${import.meta.env.VITE_THE_MOVIE_API_KEY}&append_to_response=credits,similar&page=${page}`)
 
     return response.data

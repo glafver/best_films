@@ -13,7 +13,9 @@ const SimilarMoviesPage = () => {
 
     const { id } = useParams()
 
-    const { data, error, isError, isLoading, isSuccess } = useQuery(['movie', id, page], getMovie)
+    const { data, error, isError, isLoading, isSuccess } = useQuery(['movie', id, page], getMovie, {
+        keepPreviousData: true,
+    })
 
     return (
         <Container className='films_page_container'>
