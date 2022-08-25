@@ -1,7 +1,6 @@
 import Navigation from './pages/partials/Navigation'
 import HomePage from './pages/HomePage'
 import PageNotFound from './pages/PageNotFound'
-import GenresPage from './pages/GenresPage'
 import TypeMoviesPage from './pages/TypeMoviesPage'
 import GenreMoviesPage from './pages/GenreMoviesPage'
 import MovieActorsPage from './pages/MovieActorsPage'
@@ -10,7 +9,7 @@ import SimilarMoviesPage from './pages/SimilarMoviesPage'
 import TrendingMoviesPage from './pages/TrendingMoviesPage'
 import ActorPage from './pages/ActorPage'
 import MoviePage from './pages/MoviePage'
-import { ReactQueryDevtools } from 'react-query/devtools'
+// import { ReactQueryDevtools } from 'react-query/devtools'
 import { Routes, Route } from 'react-router-dom'
 import './assets/scss/App.scss'
 
@@ -25,9 +24,7 @@ function App() {
 
         <Route path="/movies/:type" element={<TypeMoviesPage />} />
 
-        <Route path="/movies/trending/day" element={<TrendingMoviesPage />} />
-
-        <Route path="/movies/trending/week" element={<TrendingMoviesPage />} />
+        <Route path="/movies/trending/:timeline" element={<TrendingMoviesPage />} />
 
         <Route path="/movie/:id" element={<MoviePage />} />
 
@@ -37,17 +34,15 @@ function App() {
 
         <Route path="/actor/:id" element={<ActorPage />} />
 
-        <Route path="/actor/:id/movies" element={<ActorMoviesPage />} />
+        <Route path="/actor/:id/:name/movies" element={<ActorMoviesPage />} />
 
-        <Route path="/genres" element={<GenresPage />} />
-
-        <Route path="/genres/:genre/movies" element={<GenreMoviesPage />} />
+        <Route path="/genres/:id/:genre/movies" element={<GenreMoviesPage />} />
 
         <Route path="*" element={<PageNotFound />} />
 
       </Routes>
 
-      <ReactQueryDevtools position='bottom-left' />
+      {/* <ReactQueryDevtools position='bottom-left' /> */}
     </div>
   )
 }

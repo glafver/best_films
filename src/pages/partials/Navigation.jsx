@@ -1,8 +1,13 @@
 import { Container, Navbar, Nav, NavDropdown } from 'react-bootstrap'
 import { Link, NavLink } from 'react-router-dom'
 import popcorn from '../../assets/icons/favicon.svg'
+import { useQuery } from 'react-query'
+import { getGenres } from '../../services/TheMovieAPI'
 
 const Navigation = () => {
+
+	const { data, error, isError, isLoading, isSuccess } = useQuery(['genres'], getGenres)
+
 	return (
 		<Navbar bg="dark" variant="dark" expand="md" className='mb-4'>
 			<Container>
@@ -29,7 +34,14 @@ const Navigation = () => {
 
 						<Nav.Link as={NavLink} to="movies/top_rated">Top rated films 🏆</Nav.Link>
 
-						<Nav.Link as={NavLink} to="genres">Genres 🎭</Nav.Link>
+						<NavDropdown title="Genres 🎭" id="basic-nav-dropdown">
+							{isSuccess &&
+								data.genres.map((genre, i) => (
+									<NavDropdown.Item as={Link} key={i} to={`genres/${genre.id}/${genre.name}/movies`}>{genre.name}</NavDropdown.Item>
+								))
+							}
+
+						</NavDropdown>
 
 					</Nav>
 				</Navbar.Collapse>

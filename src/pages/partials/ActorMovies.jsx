@@ -1,7 +1,7 @@
 import React from 'react'
 import { Link, useParams } from 'react-router-dom'
 
-const ActorMovies = ({ movies }) => {
+const ActorMovies = ({ movies, name }) => {
 
     const { id } = useParams()
 
@@ -13,7 +13,7 @@ const ActorMovies = ({ movies }) => {
             ))
             }
 
-            <Link className='text-secondary' to={`/actor/${id}/movies`}>more movies...</Link>
+            <Link className='text-secondary' to={`/actor/${id}/${name}/movies`}>more movies...</Link>
 
         </>
 

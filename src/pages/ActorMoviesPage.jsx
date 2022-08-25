@@ -11,7 +11,7 @@ const ActorPage = () => {
     const [searchParams, setSearchParams] = useSearchParams({ page: 1 })
     const page = searchParams.get('page') ? parseInt(searchParams.get('page')) : null
 
-    const { id } = useParams()
+    const { id, name } = useParams()
     const { data, error, isError, isLoading, isSuccess } = useQuery(['actor_movies', id, page], getActorMovies, {
         keepPreviousData: true,
     })
@@ -25,7 +25,7 @@ const ActorPage = () => {
 
             {isSuccess && (
                 <>
-                    {/* <p>Movies with actor {id}</p> */}
+                    <p>Movies with <b>{name}</b> </p>
 
                     <p>We found <b>{data.total_results}</b> films:</p>
 

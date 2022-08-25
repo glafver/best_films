@@ -11,10 +11,7 @@ const GenreMoviesPage = () => {
     const [searchParams, setSearchParams] = useSearchParams({ page: 1 })
     const page = searchParams.get('page') ? parseInt(searchParams.get('page')) : null
 
-    const { genre } = useParams()
-
-    const id = parseInt(genre.split("_")[0])
-    const genre_name = genre.split("_")[1]
+    const { id, genre } = useParams()
 
     const { data, error, isError, isLoading, isSuccess } = useQuery(['movies_by_genre', id, page], getMoviesByGenre, {
         keepPreviousData: true,
@@ -29,7 +26,7 @@ const GenreMoviesPage = () => {
 
             {isSuccess && (
                 <>
-                    <p>We found <b>{data.total_results}</b> films in <b>{genre_name} </b>genre:</p>
+                    <p>We found <b>{data.total_results}</b> films in <b>{genre} </b>genre:</p>
 
                     <MoviesList movies={data.results} page={page} total_pages={parseInt(data.total_pages)}
                         on_prev={() => setSearchParams({ page: page - 1 })} on_next={() => setSearchParams({ page: page + 1 })} />

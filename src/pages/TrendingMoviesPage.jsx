@@ -2,14 +2,13 @@ import React from 'react'
 import { Container } from 'react-bootstrap'
 import { getPopularMoviesTimeline } from '../services/TheMovieAPI'
 import { useQuery } from 'react-query'
-import { useLocation, useSearchParams } from 'react-router-dom'
+import { useParams, useSearchParams } from 'react-router-dom'
 import MoviesList from './partials/MoviesList'
 import LastFilms from './partials/LastFilms'
 
 const TrendingMoviesPage = () => {
 
-    const location = useLocation()
-    const timeline = location.pathname.replace("/movies/trending/", "")
+    const { timeline } = useParams()
 
     const [searchParams, setSearchParams] = useSearchParams({ page: 1 })
     const page = searchParams.get('page') ? parseInt(searchParams.get('page')) : null

@@ -22,7 +22,7 @@ const MoviesList = ({ movies, page, total_pages, on_prev, on_next }) => {
                 ))}
             </Row>
 
-            <div className="d-flex justify-content-between align-items-center mt-4">
+            <div className="d-flex justify-content-between align-items-center text-center mt-4">
                 <Button disabled={page === 1 ? true : false} onClick={on_prev} variant="primary">Previous Page</Button>
 
                 <span>Page: {page}/{total_pages}</span>

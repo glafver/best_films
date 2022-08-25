@@ -35,7 +35,7 @@ const MoviePage = () => {
                 <>
                     <Row>
                         <Col md={6} sm={12}>
-                            <Image className='mx-auto fluid' src={data.poster_path != null ? 'https://image.tmdb.org/t/p/w500/' + data.poster_path : 'https://artbunny.ru/wp-content/uploads/2014/11/placeholder.jpg'} />
+                            <Image className='mx-auto img-fluid' src={data.poster_path != null ? 'https://image.tmdb.org/t/p/w500/' + data.poster_path : 'https://artbunny.ru/wp-content/uploads/2014/11/placeholder.jpg'} />
                         </Col>
                         <Col md={6} sm={12}>
                             <h1>{data.title}</h1>

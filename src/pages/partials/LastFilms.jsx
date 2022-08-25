@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Row, Col, Image, Container } from 'react-bootstrap'
+import { Row, Col, Image } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
 
 const LastFilms = () => {
@@ -8,7 +8,7 @@ const LastFilms = () => {
 
     return (
         <>
-            <Container className='films_footer text-center'>
+            <div className='films_footer text-center'>
 
                 <p><b>Movies you've recently viewed:</b></p>
                 <Row className='justify-content-center'>
@@ -21,7 +21,7 @@ const LastFilms = () => {
                     ))}
                 </Row>
 
-            </Container>
+            </div>
         </>
     )
 }
