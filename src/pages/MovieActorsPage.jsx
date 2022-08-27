@@ -1,10 +1,9 @@
 import React from 'react'
 import { Container } from 'react-bootstrap'
-import { getMovie } from '../services/TheMovieAPI'
-import { useQuery } from 'react-query'
 import { useParams } from 'react-router-dom'
 import ActorsList from './partials/ActorsList'
 import LastFilms from './partials/LastFilms'
+import useMovie from "../hooks/useMovie"
 
 const ActorsPage = () => {
 
@@ -12,9 +11,7 @@ const ActorsPage = () => {
 
     const { id } = useParams()
 
-    const { data, error, isError, isLoading, isSuccess } = useQuery(['movie', id, page], getMovie, {
-        keepPreviousData: true,
-    })
+    const { data, error, isError, isLoading, isSuccess } = useMovie(id, page)
 
     return (
         <Container className='films_page_container'>

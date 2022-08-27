@@ -1,23 +1,23 @@
 import React, { useEffect, useState, useRef } from 'react'
-import { Container, Form, Button, InputGroup } from 'react-bootstrap'
 import { useSearchParams } from 'react-router-dom'
-import { getSearchMovies } from '../services/TheMovieAPI'
-import { useQuery } from 'react-query'
+import { Container, Form, Button, InputGroup } from 'react-bootstrap'
 import LastFilms from './partials/LastFilms'
 import MoviesList from './partials/MoviesList'
+import useMovies from '../hooks/useMovies'
 
 const HomePage = () => {
 
 	const [searchParams, setSearchParams] = useSearchParams({ page: 1 })
-	const page = searchParams.get('page') ? parseInt(searchParams.get('page')) : null
-	const query = searchParams.get('query') ?? null
 
 	const [searchInput, setSearchInput] = useState('')
+
+	const page = searchParams.get('page') ? parseInt(searchParams.get('page')) : null
+
+	const query = searchParams.get('query') ?? null
+
 	const searchInputRef = useRef()
 
-	const { data, error, isError, isLoading, isSuccess } = useQuery(['search_movies', query, page], getSearchMovies, {
-		enabled: !!query,
-	})
+	const { data, error, isError, isLoading, isSuccess } = useMovies('search', query, page)
 
 	const handleSubmit = async e => {
 		e.preventDefault()
@@ -60,9 +60,12 @@ const HomePage = () => {
 
 			{isSuccess && (
 				<>
+					{data.results.length === 0 && <p>No films matching your search.</p>}
+					{data.results.length > 0 &&
+						<MoviesList movies={data.results} page={page} total_pages={parseInt(data.total_pages)}
+							on_prev={() => setSearchParams({ query, page: page - 1 })} on_next={() => setSearchParams({ query, page: page + 1 })}
+						/>}
 
-					<MoviesList movies={data.results} page={page} total_pages={parseInt(data.total_pages)}
-						on_prev={() => setSearchParams({ query, page: page - 1 })} on_next={() => setSearchParams({ query, page: page + 1 })} />
 				</>
 			)}
 

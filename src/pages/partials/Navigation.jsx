@@ -6,7 +6,7 @@ import { getGenres } from '../../services/TheMovieAPI'
 
 const Navigation = () => {
 
-	const { data, error, isError, isLoading, isSuccess } = useQuery(['genres'], getGenres)
+	const { data, isSuccess } = useQuery(['genres'], getGenres)
 
 	return (
 		<Navbar bg="dark" variant="dark" expand="md" className='mb-4'>

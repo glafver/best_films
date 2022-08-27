@@ -1,20 +1,19 @@
 import React from 'react'
 import { useParams, useSearchParams } from 'react-router-dom'
-import { getActorMovies } from '../services/TheMovieAPI'
-import { useQuery } from 'react-query'
 import { Container } from 'react-bootstrap'
 import MoviesList from './partials/MoviesList'
 import LastFilms from './partials/LastFilms'
+import useMovies from '../hooks/useMovies'
 
 const ActorPage = () => {
 
+    const { id, name } = useParams()
+
     const [searchParams, setSearchParams] = useSearchParams({ page: 1 })
+
     const page = searchParams.get('page') ? parseInt(searchParams.get('page')) : null
 
-    const { id, name } = useParams()
-    const { data, error, isError, isLoading, isSuccess } = useQuery(['actor_movies', id, page], getActorMovies, {
-        keepPreviousData: true,
-    })
+    const { data, error, isError, isLoading, isSuccess } = useMovies('actor_movies', id, page)
 
     return (
         <Container className='films_page_container'>
@@ -25,9 +24,7 @@ const ActorPage = () => {
 
             {isSuccess && (
                 <>
-                    <p>Movies with <b>{name}</b> </p>
-
-                    <p>We found <b>{data.total_results}</b> films:</p>
+                    <p>We found <b>{data.total_results}</b> movies with <b>{name}</b>:</p>
 
                     <MoviesList movies={data.results} page={page} total_pages={parseInt(data.total_pages)}
                         on_prev={() => setSearchParams({ page: page - 1 })} on_next={() => setSearchParams({ page: page + 1 })} />

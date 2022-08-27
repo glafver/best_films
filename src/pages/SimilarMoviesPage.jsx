@@ -1,21 +1,19 @@
 import React from 'react'
 import { Container } from 'react-bootstrap'
-import { getMovie } from '../services/TheMovieAPI'
-import { useQuery } from 'react-query'
 import { useParams, useSearchParams } from 'react-router-dom'
 import MoviesList from './partials/MoviesList'
 import LastFilms from './partials/LastFilms'
+import useMovie from '../hooks/useMovie'
 
 const SimilarMoviesPage = () => {
 
-    const [searchParams, setSearchParams] = useSearchParams({ page: 1 })
-    const page = searchParams.get('page') ? parseInt(searchParams.get('page')) : null
-
     const { id } = useParams()
 
-    const { data, error, isError, isLoading, isSuccess } = useQuery(['movie', id, page], getMovie, {
-        keepPreviousData: true,
-    })
+    const [searchParams, setSearchParams] = useSearchParams({ page: 1 })
+
+    const page = searchParams.get('page') ? parseInt(searchParams.get('page')) : null
+
+    const { data, error, isError, isLoading, isSuccess } = useMovie(id, page)
 
     return (
         <Container className='films_page_container'>

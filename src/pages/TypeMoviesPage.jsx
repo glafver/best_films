@@ -1,21 +1,19 @@
 import React from 'react'
-import { Container } from 'react-bootstrap'
-import { getMoviesByType } from '../services/TheMovieAPI'
-import { useQuery } from 'react-query'
 import { useParams, useSearchParams } from 'react-router-dom'
+import { Container } from 'react-bootstrap'
 import MoviesList from './partials/MoviesList'
 import LastFilms from './partials/LastFilms'
+import useMovies from '../hooks/useMovies'
 
 const TypeMoviesPage = () => {
 
     const { type } = useParams()
 
     const [searchParams, setSearchParams] = useSearchParams({ page: 1 })
+
     const page = searchParams.get('page') ? parseInt(searchParams.get('page')) : null
 
-    const { data, error, isError, isLoading, isSuccess } = useQuery(['movies', type, page], getMoviesByType, {
-        keepPreviousData: true,
-    })
+    const { data, error, isError, isLoading, isSuccess } = useMovies('movies_by_type', type, page)
 
     return (
         <Container className='films_page_container'>
