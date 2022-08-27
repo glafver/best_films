@@ -1,7 +1,7 @@
 import React from 'react'
 import { Image, Row, Col, Container, Button } from 'react-bootstrap'
 import { useParams, useNavigate } from 'react-router-dom'
-import ActorMovies from './partials/ActorMovies'
+import ActorMovies from '../components/ActorMovies'
 import LastFilms from './partials/LastFilms'
 import useActor from '../hooks/useActor'
 
@@ -26,7 +26,7 @@ const ActorPage = () => {
 
                     <Row>
                         <Col md={6} sm={12} >
-                            <Image className='mx-auto img-fluid' src={actor.profile_path != null ? 'https://image.tmdb.org/t/p/w500/' + actor.profile_path : 'https://artbunny.ru/wp-content/uploads/2014/11/placeholder.jpg'} />
+                            <Image className='mx-auto img-fluid' src={actor.profile_path != null ? 'https://image.tmdb.org/t/p/w500/' + actor.profile_path : 'https://ik.imagekit.io/hfbs99aazxg/tr:di-no_poster_available.svg/nophoto.jpg?ik-sdk-version=angular-1.0.2'} />
                         </Col>
                         <Col md={6} sm={12}>
                             <h1>{actor.name}</h1>

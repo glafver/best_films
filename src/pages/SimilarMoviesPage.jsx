@@ -1,7 +1,7 @@
 import React from 'react'
 import { Container } from 'react-bootstrap'
 import { useParams, useSearchParams } from 'react-router-dom'
-import MoviesList from './partials/MoviesList'
+import MoviesList from '../components/MoviesList'
 import LastFilms from './partials/LastFilms'
 import useMovie from '../hooks/useMovie'
 
@@ -11,7 +11,7 @@ const SimilarMoviesPage = () => {
 
     const [searchParams, setSearchParams] = useSearchParams({ page: 1 })
 
-    const page = searchParams.get('page') ? parseInt(searchParams.get('page')) : null
+    const page = parseInt(searchParams.get('page'))
 
     const { data, error, isError, isLoading, isSuccess } = useMovie(id, page)
 

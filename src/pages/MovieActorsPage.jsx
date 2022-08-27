@@ -1,7 +1,7 @@
 import React from 'react'
 import { Container } from 'react-bootstrap'
 import { useParams } from 'react-router-dom'
-import ActorsList from './partials/ActorsList'
+import ActorsList from '../components/ActorsList'
 import LastFilms from './partials/LastFilms'
 import useMovie from "../hooks/useMovie"
 

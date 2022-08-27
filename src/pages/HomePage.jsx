@@ -2,18 +2,18 @@ import React, { useEffect, useState, useRef } from 'react'
 import { useSearchParams } from 'react-router-dom'
 import { Container, Form, Button, InputGroup } from 'react-bootstrap'
 import LastFilms from './partials/LastFilms'
-import MoviesList from './partials/MoviesList'
+import MoviesList from '../components/MoviesList'
 import useMovies from '../hooks/useMovies'
 
 const HomePage = () => {
 
-	const [searchParams, setSearchParams] = useSearchParams({ page: 1 })
+	const [searchParams, setSearchParams] = useSearchParams({ page: 1, query: '' })
 
 	const [searchInput, setSearchInput] = useState('')
 
-	const page = searchParams.get('page') ? parseInt(searchParams.get('page')) : null
+	const page = parseInt(searchParams.get('page'))
 
-	const query = searchParams.get('query') ?? null
+	const query = searchParams.get('query')
 
 	const searchInputRef = useRef()
 

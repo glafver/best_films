@@ -7,7 +7,6 @@ const ActorMovies = ({ movies, name }) => {
 
     return (
         <>
-
             {movies.slice(0, 10).map(movie => (
                 <Link key={movie.id} to={`/movie/${movie.id}`}>{movie.title}, </Link>
             ))

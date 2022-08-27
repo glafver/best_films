@@ -1,10 +1,11 @@
-import React, { useEffect } from "react"
+import React from "react"
 import { Image, Row, Col, Container, Button } from 'react-bootstrap'
 import { useNavigate, useParams } from 'react-router-dom'
-import MovieActors from './partials/MovieActors'
-import MovieSimilar from './partials/MovieSimilar'
+import MovieActors from '../components/MovieActors'
+import MovieSimilar from '../components/MovieSimilar'
 import LastFilms from "./partials/LastFilms"
 import useMovie from "../hooks/useMovie"
+import useLocalStorage from "../hooks/useLocalStorage"
 
 
 const MoviePage = () => {
@@ -17,15 +18,7 @@ const MoviePage = () => {
 
     const { data, error, isError, isLoading, isSuccess } = useMovie(id, page)
 
-    useEffect(() => {
-        if (data) {
-            let movies = localStorage.getItem('movies') ? JSON.parse(localStorage.getItem('movies')) : []
-            movies = movies.filter(function (item) { return item.id !== id })
-            movies.unshift({ id: id, title: data.title, src: data.poster_path != null ? 'https://image.tmdb.org/t/p/w500/' + data.poster_path : 'https://artbunny.ru/wp-content/uploads/2014/11/placeholder.jpg' })
-            movies = movies.slice(0, 10)
-            localStorage.setItem('movies', JSON.stringify(movies))
-        }
-    }, [data])
+    useLocalStorage(data, id)
 
     return (
         <Container className='films_page_container'>
@@ -40,7 +33,7 @@ const MoviePage = () => {
 
                     <Row>
                         <Col md={6} sm={12}>
-                            <Image className='mx-auto img-fluid' src={data.poster_path != null ? 'https://image.tmdb.org/t/p/w500/' + data.poster_path : 'https://artbunny.ru/wp-content/uploads/2014/11/placeholder.jpg'} />
+                            <Image className='mx-auto img-fluid' src={data.poster_path != null ? 'https://image.tmdb.org/t/p/w500/' + data.poster_path : 'https://ik.imagekit.io/hfbs99aazxg/tr:di-no_poster_available.svg/nophoto.jpg?ik-sdk-version=angular-1.0.2'} />
                         </Col>
                         <Col md={6} sm={12}>
                             <h1>{data.title}</h1>

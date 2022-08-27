@@ -1,6 +1,9 @@
 import { useQuery } from 'react-query'
 import { getPopularMoviesByPeriod, getMoviesByType, getMoviesByGenre, getMoviesByActor, getSearchMovies } from '../services/TheMovieAPI'
 
+
+// getting data with movies based on the request features
+
 const useMovies = (name, type, page) => {
 
     if (name === 'movies_by_period') {

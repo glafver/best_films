@@ -15,7 +15,7 @@ const ActorsList = ({ cast }) => {
 			{actors.map(actor => (
 				<Col lg={3} md={4} sm={6} key={actor.id}>
 					<Card className="mb-4">
-						<Card.Img variant="top" src={actor.profile_path != null ? 'https://image.tmdb.org/t/p/w500/' + actor.profile_path : 'https://artbunny.ru/wp-content/uploads/2014/11/placeholder.jpg'} />
+						<Card.Img variant="top" src={actor.profile_path != null ? 'https://image.tmdb.org/t/p/w500/' + actor.profile_path : 'https://ik.imagekit.io/hfbs99aazxg/tr:di-no_poster_available.svg/nophoto.jpg?ik-sdk-version=angular-1.0.2'} />
 						<Card.Body>
 							<Card.Title>{actor.name}</Card.Title>
 							<Card.Text>
