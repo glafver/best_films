@@ -8,20 +8,23 @@ const LastFilms = () => {
 
     return (
         <>
-            <div className='films_footer text-center'>
-
-                <p><b>Movies you've recently viewed:</b></p>
-                <Row className='justify-content-center'>
-                    {movies.length && movies.map((movie, i) => (
-                        <Col className='text-center' xs={1} key={i} >
-                            <Link to={`/movie/${movie.id}`}>
-                                <Image className='mx-auto d-block w-100 img-thumbnail' src={movie.src} />
-                            </Link>
-                        </Col>
-                    ))}
-                </Row>
-
-            </div>
+            {movies.length ?
+                <div className='films_footer text-center m-auto w-100'>
+                    <>
+                        <p><b>Movies you've recently viewed:</b></p>
+                        <Row className='justify-content-center'>
+                            {movies.length && movies.map((movie, i) => (
+                                <Col className='text-center' xs={1} key={i} >
+                                    <Link to={`/movie/${movie.id}`}>
+                                        <Image className='
+                                        img-fluid' src={movie.src} />
+                                    </Link>
+                                </Col>
+                            ))}
+                        </Row>
+                    </>
+                </div>
+                : null}
         </>
     )
 }

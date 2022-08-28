@@ -21,7 +21,7 @@ const MoviePage = () => {
     useLocalStorage(data, id)
 
     return (
-        <Container className='films_page_container'>
+        <Container className='films_page_container d-flex flex-column align-items-center'>
 
             {isLoading && <p>Loading...</p>}
 
@@ -29,7 +29,7 @@ const MoviePage = () => {
 
             {isSuccess && (
                 <>
-                    <Button className="my-4 btn btn-secondary" onClick={() => navigate(-1)}>Back</Button>
+                    <Button className="my-4 btn btn-secondary align-self-start" onClick={() => navigate(-1)}>Back</Button>
 
                     <Row>
                         <Col md={6} sm={12}>
@@ -46,7 +46,6 @@ const MoviePage = () => {
                     </Row>
                 </>
             )}
-
             <LastFilms />
 
         </Container>
